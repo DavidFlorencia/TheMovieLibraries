@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">TheMovieApp</string>
+    <string name="base_url_images">https://image.tmdb.org/t/p/w200/</string>
+    <string name="base_url_images_large">https://image.tmdb.org/t/p/original/</string>
+    <string name="top_rated_movies">Top Rated Movies</string>
+    <string name="detail_from_movie">Detail From Movie</string>
+    <string name="cache_movies">Cache Movies</string>
+    <string name="popular_movies">Popular Movies</string>
+    <string name="found_movies">Found Movies</string>
+    <string name="search_view_hint">Search Movie</string>
+</resources>

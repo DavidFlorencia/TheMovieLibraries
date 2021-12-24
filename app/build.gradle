@@ -39,7 +39,8 @@ android {
 }
 
 dependencies {
-    implementation project(path: ':api')
+    implementation project(path: ':the-movie-repository')
+    implementation project(path: ':the-movie-api')
     // Core
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.6.0'

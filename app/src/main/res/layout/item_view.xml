@@ -6,11 +6,11 @@
     <data>
         <variable
             name="movie"
-            type="com.dflorencia.api.Movie" />
+            type="com.dflorencia.themovieapi.movie.Movie" />
 
         <variable
             name="clickListener"
-            type="com.dflorencia.themovieapp.ui.MovieAdapter.MovieClickListener" />
+            type="com.dflorencia.themovieapp.overview.MovieAdapter.MovieClickListener" />
     </data>
 
     <LinearLayout

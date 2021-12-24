@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.dflorencia.themovieapp.viewmodel.DetailViewModel" />
+            type="com.dflorencia.themovieapp.detail.movie.DetailViewModel" />
     </data>
 
     <LinearLayout

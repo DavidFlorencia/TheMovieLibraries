@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/overviewFragment"
-        android:name="com.dflorencia.themovieapp.ui.OverviewFragment"
+        android:name="com.dflorencia.themovieapp.overview.OverviewFragment"
         android:label="OverviewFragment"
         tools:layout="@layout/fragment_overview">
 
@@ -21,18 +21,18 @@
 
         <argument
             android:name="movie"
-            app:argType="com.dflorencia.api.Movie"/>
+            app:argType="com.dflorencia.themovieapi.movie.Movie"/>
     </fragment>
 
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.dflorencia.themovieapp.ui.DetailFragment"
+        android:name="com.dflorencia.themovieapp.detail.movie.DetailFragment"
         android:label="DetailFragment"
         tools:layout="@layout/fragment_detail">
 
         <argument
             android:name="movie"
-            app:argType="com.dflorencia.api.Movie"/>
+            app:argType="com.dflorencia.themovieapi.movie.Movie"/>
 
     </fragment>
 

@@ -23,8 +23,8 @@ interface TmdbApi {
     @GET("tv/popular")
     suspend fun getPopularTvShows(@Query("api_key") apiKey:String): TvShowPage
 
-    @GET("tv/latest")
-    suspend fun getLatestTvShows(@Query("api_key") apiKey:String): TvShowPage
+    @GET("tv/airing_today")
+    suspend fun getAiringTodayTvShows(@Query("api_key") apiKey:String): TvShowPage
 
     // Borrar estos
     @GET("search/movie")

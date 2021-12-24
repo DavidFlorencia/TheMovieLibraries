@@ -7,7 +7,6 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "TheMovieApp"
-include ':app'
 include ':the-movie-api'
 include ':the-movie-database'
 include ':the-movie-repository'

@@ -2,6 +2,7 @@ package com.dflorencia.themoviedatabase
 
 import android.content.Context
 import com.dflorencia.themoviedatabase.movie.MovieDao
+import com.dflorencia.themoviedatabase.tv_show.TvShowDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,10 +15,11 @@ import javax.inject.Singleton
 class DatabaseModule {
     @Singleton
     @Provides
-    fun provideAppDatabase(@ApplicationContext context: Context): com.dflorencia.themoviedatabase.AppDatabase =
-        com.dflorencia.themoviedatabase.AppDatabase.getInstance(context)
+    fun provideAppDatabase(@ApplicationContext context: Context): AppDatabase = AppDatabase.getInstance(context)
 
     @Provides
-    fun provideMovieDao(appDatabase: com.dflorencia.themoviedatabase.AppDatabase): MovieDao =
-        appDatabase.movieDao()
+    fun provideMovieDao(appDatabase: AppDatabase): MovieDao = appDatabase.movieDao()
+
+    @Provides
+    fun provideTvShowDao(appDatabase: AppDatabase): TvShowDao = appDatabase.tvShowDao()
 }

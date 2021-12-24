@@ -1,4 +1,4 @@
-package com.dflorencia.themovieapp.api
+package com.dflorencia.api
 
 import android.os.Parcelable
 import com.squareup.moshi.Json

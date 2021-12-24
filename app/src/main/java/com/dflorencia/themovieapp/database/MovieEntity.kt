@@ -3,7 +3,6 @@ package com.dflorencia.themovieapp.database
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.squareup.moshi.Json
 
 @Entity(tableName = "movies")
 data class MovieEntity(
@@ -19,5 +18,6 @@ data class MovieEntity(
     val title: String? = "",
     val video: Boolean? = false,
     @ColumnInfo(name = "vote_average") val voteAverage: Double? = 0.0,
-    @ColumnInfo(name = "vote_count") val voteCount: Int? = 0
+    @ColumnInfo(name = "vote_count") val voteCount: Int? = 0,
+    @ColumnInfo(name = "type") val type: String? = ""
 )

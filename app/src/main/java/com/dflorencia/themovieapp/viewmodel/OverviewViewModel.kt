@@ -5,8 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.dflorencia.themovieapp.api.Movie
-import com.dflorencia.themovieapp.root.MovieRepository
+import com.dflorencia.api.Movie
+import com.dflorencia.themovieapp.root.AppRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.io.IOException
@@ -16,16 +16,15 @@ enum class ApiStatus { LOADING, ERROR, DONE }
 enum class Filter { TOP_RATED, POPULAR, SEARCH, CACHE}
 
 @HiltViewModel
-class OverviewViewModel @Inject constructor(val movieRepository: MovieRepository): ViewModel() {
+class OverviewViewModel @Inject constructor(val appRepository: AppRepository): ViewModel() {
 
     private val _status = MutableLiveData<ApiStatus>()
     val status: LiveData<ApiStatus> get() = _status;
 
-    private var lastFilter = Filter.TOP_RATED
     private val _filter = MutableLiveData(Filter.TOP_RATED)
     val filter: LiveData<Filter> get() = _filter
 
-    val movies: LiveData<List<Movie>> get() = movieRepository.movies
+    val movies: LiveData<List<Movie>> get() = appRepository.movies
 
     init {
         refreshDataFromRepository()
@@ -35,7 +34,7 @@ class OverviewViewModel @Inject constructor(val movieRepository: MovieRepository
         viewModelScope.launch {
             _status.value = ApiStatus.LOADING
             try {
-                filter.value?.let { movieRepository.refreshMovies(it,query) }
+                appRepository.refreshData()
                 _status.value = ApiStatus.DONE
             } catch (networkError: IOException) {
                 if (movies.value.isNullOrEmpty()) {
@@ -49,16 +48,5 @@ class OverviewViewModel @Inject constructor(val movieRepository: MovieRepository
                 _filter.value = Filter.CACHE
             }
         }
-    }
-
-    fun setFilter(filter: Filter, query: String = "") {
-        _filter.value = filter
-        refreshDataFromRepository(query)
-        if (filter != Filter.SEARCH) lastFilter = filter
-    }
-
-    fun setLastFilter() {
-        _filter.value = lastFilter
-        refreshDataFromRepository()
     }
 }

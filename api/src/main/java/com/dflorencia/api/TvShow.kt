@@ -1,22 +1,22 @@
-package com.dflorencia.themovieapp.api
+package com.dflorencia.api
 
 import android.os.Parcelable
 import com.squareup.moshi.Json
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Movie(
-    @Json(name = "adult") var adult: Boolean? = null,
+data class TvShow(
     @Json(name = "backdrop_path") var backdropPath: String? = null,
-    @Json(name = "genre_ids") var genreIds: List<Int>? = null,
+    @Json(name = "first_air_date") var firstAirDate: String? = null,
+    @Json(name = "genre_ids") var genreIds: List<Int> = arrayListOf(),
     @Json(name = "id") var id: Int? = null,
+    @Json(name = "name") var name: String? = null,
+    @Json(name = "origin_country") var originCountry: List<String> = arrayListOf(),
     @Json(name = "original_language") var originalLanguage: String? = null,
-    @Json(name = "original_title") var originalTitle: String? = null,
+    @Json(name = "original_name") var originalName: String? = null,
     @Json(name = "overview") var overview: String? = null,
     @Json(name = "popularity") var popularity: Double? = null,
     @Json(name = "poster_path") var posterPath: String? = null,
-    @Json(name = "release_date") var releaseDate: String? = null,
-    @Json(name = "title") var title: String? = null,
-    @Json(name = "video") var video: Boolean? = null,
     @Json(name = "vote_average") var voteAverage: Double? = null,
-    @Json(name = "vote_count") var voteCount: Int? = null): Parcelable
+    @Json(name = "vote_count") var voteCount: Int? = null
+): Parcelable

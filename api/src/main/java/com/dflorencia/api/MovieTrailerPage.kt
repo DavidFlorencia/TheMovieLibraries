@@ -1,6 +1,5 @@
-package com.dflorencia.themovieapp.api
+package com.dflorencia.api
 
-import com.dflorencia.themovieapp.api.MovieTrailer
 import com.squareup.moshi.Json
 
 class MovieTrailerPage {

@@ -6,7 +6,7 @@
     <data>
         <variable
             name="movie"
-            type="com.dflorencia.themovieapp.api.Movie" />
+            type="com.dflorencia.api.Movie" />
 
         <variable
             name="clickListener"

@@ -18,7 +18,7 @@ abstract class AppDatabase: RoomDatabase() {
                 if (!Companion::instance.isInitialized) {
                     instance = Room.databaseBuilder(context.applicationContext,
                         AppDatabase::class.java,
-                        "videos").build()
+                        "videos.sqlite").build()
                 }
             }
             return instance

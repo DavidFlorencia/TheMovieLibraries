@@ -4,9 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.dflorencia.themovieapp.viewmodel.Filter
-import com.dflorencia.themovieapp.api.Movie
-import com.dflorencia.themovieapp.api.MoviePage
-import com.dflorencia.themovieapp.api.TmdbApi
+import com.dflorencia.api.Movie
 import com.dflorencia.themovieapp.database.MovieDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -14,11 +12,20 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class MovieRepository @Inject constructor(private val movieDao: MovieDao,
-                                          private val tmdbApi: TmdbApi,
-                                          private val apiKey: String){
+class AppRepository @Inject constructor(private val movieDao: MovieDao,
+                                        private val tmdbApi: com.dflorencia.api.TmdbApi,
+                                        private val apiKey: String){
 
-//    private val apiKey = Keys.apiKey()
+    suspend fun refreshData(){
+        withContext(Dispatchers.IO){
+            val response = tmdbApi.getTopRatedMovies(apiKey)
+
+            response.movies?.asDatabaseModel("top_rated")?.let {
+                    movieDao.clear("top_rated")
+                    movieDao.insertAll(it)
+            }
+        }
+    }
 
     suspend fun refreshMovies(filter: Filter, query:String) {
         withContext(Dispatchers.IO){
@@ -26,10 +33,10 @@ class MovieRepository @Inject constructor(private val movieDao: MovieDao,
                 Filter.TOP_RATED -> tmdbApi.getTopRatedMovies(apiKey)
                 Filter.POPULAR -> tmdbApi.getPopularMovies(apiKey)
                 Filter.SEARCH -> tmdbApi.searchMoviesFromNetwork(apiKey, query)
-                else -> MoviePage()
+                else -> com.dflorencia.api.MoviePage()
             }
-            response.movies?.asDatabaseModel()?.let {
-                movieDao.clear()
+            response.movies?.asDatabaseModel("")?.let {
+                movieDao.clear("top_rated")
                 movieDao.insertAll(it)
             }
         }
@@ -43,7 +50,7 @@ class MovieRepository @Inject constructor(private val movieDao: MovieDao,
         _key.value = movieTrailerPage.movieTrailers?.get(0)?.key.toString()
     }
 
-    val movies: LiveData<List<Movie>> = Transformations.map(movieDao.getMovies()){
+    val movies: LiveData<List<Movie>> = Transformations.map(movieDao.getMovies("top_rated")){
         it.asApiModel()
     }
 }

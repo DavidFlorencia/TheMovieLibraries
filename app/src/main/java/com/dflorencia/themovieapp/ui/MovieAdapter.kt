@@ -8,11 +8,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.dflorencia.themovieapp.R
-import com.dflorencia.themovieapp.api.Movie
+import com.dflorencia.api.Movie
 import com.dflorencia.themovieapp.databinding.ItemViewBinding
 
 
-class MovieAdapter(private val clickListener: MovieClickListener): ListAdapter<Movie, MovieAdapter.MovieViewHolder>(
+class MovieAdapter(private val clickListener: MovieClickListener): ListAdapter<com.dflorencia.api.Movie, MovieAdapter.MovieViewHolder>(
     ItemDiffCallback()
 ) {
 
@@ -20,7 +20,7 @@ class MovieAdapter(private val clickListener: MovieClickListener): ListAdapter<M
 
     class MovieViewHolder private constructor(val binding: ItemViewBinding):
         RecyclerView.ViewHolder(binding.root){
-        fun bind(movie: Movie, clickListener: MovieClickListener){
+        fun bind(movie: com.dflorencia.api.Movie, clickListener: MovieClickListener){
             binding.movie = movie;
             binding.clickListener = clickListener;
             binding.executePendingBindings();
@@ -35,12 +35,12 @@ class MovieAdapter(private val clickListener: MovieClickListener): ListAdapter<M
         }
     }
 
-    class ItemDiffCallback: DiffUtil.ItemCallback<Movie>(){
-        override fun areItemsTheSame(oldMovie: Movie, newMovie: Movie): Boolean {
+    class ItemDiffCallback: DiffUtil.ItemCallback<com.dflorencia.api.Movie>(){
+        override fun areItemsTheSame(oldMovie: com.dflorencia.api.Movie, newMovie: com.dflorencia.api.Movie): Boolean {
             return oldMovie === newMovie
         }
 
-        override fun areContentsTheSame(oldMovie: Movie, newMovie: Movie): Boolean {
+        override fun areContentsTheSame(oldMovie: com.dflorencia.api.Movie, newMovie: com.dflorencia.api.Movie): Boolean {
             return oldMovie.id == newMovie.id
         }
     }
@@ -50,7 +50,7 @@ class MovieAdapter(private val clickListener: MovieClickListener): ListAdapter<M
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        val item = getItem(position) as Movie
+        val item = getItem(position) as com.dflorencia.api.Movie
         holder.bind(item, clickListener)
 
         val animation: Animation = AnimationUtils.loadAnimation(
@@ -66,7 +66,7 @@ class MovieAdapter(private val clickListener: MovieClickListener): ListAdapter<M
         holder.binding.root.clearAnimation()
     }
 
-    class MovieClickListener(val clickListener: (movie: Movie) -> Unit){
-        fun onClick(movie: Movie) = clickListener(movie);
+    class MovieClickListener(val clickListener: (movie: com.dflorencia.api.Movie) -> Unit){
+        fun onClick(movie: com.dflorencia.api.Movie) = clickListener(movie);
     }
 }

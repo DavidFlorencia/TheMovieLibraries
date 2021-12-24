@@ -9,12 +9,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.dflorencia.themovieapp.R
-import com.dflorencia.themovieapp.api.Movie
+import com.dflorencia.api.Movie
 import com.dflorencia.themovieapp.ui.MovieAdapter
 import com.dflorencia.themovieapp.viewmodel.ApiStatus
 
 @BindingAdapter("data")
-fun setData(recyclerView: RecyclerView, data: List<Movie>?){
+fun setData(recyclerView: RecyclerView, data: List<com.dflorencia.api.Movie>?){
     val adapter = recyclerView.adapter as MovieAdapter
     adapter.submitList(data)
     val controller = AnimationUtils.loadLayoutAnimation(recyclerView.context, R.anim.recycler_view_animation)

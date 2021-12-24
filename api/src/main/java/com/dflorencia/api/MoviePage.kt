@@ -1,6 +1,5 @@
-package com.dflorencia.themovieapp.api
+package com.dflorencia.api
 
-import com.dflorencia.themovieapp.api.Movie
 import com.squareup.moshi.Json
 
 class MoviePage {
@@ -8,7 +7,7 @@ class MoviePage {
     var page: Int? = null
 
     @Json(name = "results")
-    var movies: List<Movie>? = null
+    var movies: List<Movie>? = listOf()
 
     @Json(name = "total_pages")
     var totalPages: Int? = null

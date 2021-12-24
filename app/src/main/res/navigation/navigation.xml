@@ -21,7 +21,7 @@
 
         <argument
             android:name="movie"
-            app:argType="com.dflorencia.themovieapp.api.Movie"/>
+            app:argType="com.dflorencia.api.Movie"/>
     </fragment>
 
     <fragment
@@ -32,7 +32,7 @@
 
         <argument
             android:name="movie"
-            app:argType="com.dflorencia.themovieapp.api.Movie"/>
+            app:argType="com.dflorencia.api.Movie"/>
 
     </fragment>
 

@@ -1,6 +1,6 @@
 package com.dflorencia.themovieapp.root
 
-import com.dflorencia.themovieapp.api.Movie
+import com.dflorencia.api.Movie
 import com.dflorencia.themovieapp.database.MovieEntity
 
 fun List<MovieEntity>.asApiModel(): List<Movie>{
@@ -23,7 +23,7 @@ fun List<MovieEntity>.asApiModel(): List<Movie>{
     }
 }
 
-fun List<Movie>.asDatabaseModel(): List<MovieEntity> {
+fun List<Movie>.asDatabaseModel(type: String): List<MovieEntity> {
     return map {
         MovieEntity(
             id = it.id!!,
@@ -38,7 +38,8 @@ fun List<Movie>.asDatabaseModel(): List<MovieEntity> {
             title = it.title,
             video = it.video,
             voteAverage = it.voteAverage,
-            voteCount = it.voteCount
+            voteCount = it.voteCount,
+            type = type
         )
     }
 }

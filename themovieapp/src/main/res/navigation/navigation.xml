@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/overviewFragment">
+
+    <fragment
+        android:id="@+id/overviewFragment"
+        android:name="com.dflorencia.themovieapp.overview.OverviewFragment"
+        android:label="OverviewFragment"
+        tools:layout="@layout/fragment_overview">
+
+        <action
+            android:id="@+id/action_overview_to_movie"
+            app:destination="@id/movieFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <action
+            android:id="@+id/action_overview_to_tv_show"
+            app:destination="@id/tvShowFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <argument
+            android:name="tvShow"
+            app:argType="com.dflorencia.themovieapi.tv_show.TvShow"/>
+
+        <argument
+            android:name="movie"
+            app:argType="com.dflorencia.themovieapi.movie.Movie"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/movieFragment"
+        android:name="com.dflorencia.themovieapp.movie.MovieFragment"
+        android:label="MovieFragment"
+        tools:layout="@layout/fragment_movie">
+
+        <argument
+            android:name="movie"
+            app:argType="com.dflorencia.themovieapi.movie.Movie"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/tvShowFragment"
+        android:name="com.dflorencia.themovieapp.tv_show.TvShowFragment"
+        android:label="TvShowFragment"
+        tools:layout="@layout/fragment_tv_show">
+
+        <argument
+            android:name="tvShow"
+            app:argType="com.dflorencia.themovieapi.tv_show.TvShow"/>
+    </fragment>
+
+</navigation>

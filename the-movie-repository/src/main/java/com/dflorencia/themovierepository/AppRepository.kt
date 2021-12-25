@@ -31,7 +31,7 @@ class AppRepository @Inject constructor(private val movieDao: MovieDao,
             refreshMovies(type = MovieType.UPCOMING)
             refreshTvShows(type = TvShowType.TOP_RATED)
             refreshTvShows(type = TvShowType.POPULAR)
-//            refreshTvShows(type = TvShowType.LATEST)
+            refreshTvShows(type = TvShowType.AIRING_TODAY)
         }
     }
 
@@ -82,7 +82,7 @@ class AppRepository @Inject constructor(private val movieDao: MovieDao,
         }
 
     val moviesUpcoming: LiveData<List<Movie>> =
-        Transformations.map(movieDao.getMovies(MovieType.POPULAR.value)) {
+        Transformations.map(movieDao.getMovies(MovieType.UPCOMING.value)) {
             it.asApiModel()
         }
 

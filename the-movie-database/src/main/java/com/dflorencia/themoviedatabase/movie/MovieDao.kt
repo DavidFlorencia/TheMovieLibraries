@@ -9,8 +9,8 @@ interface MovieDao {
     fun getMovies(type: String): LiveData<List<MovieEntity>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insertAll(videos: List<MovieEntity>)
+    suspend fun insertAll(videos: List<MovieEntity>)
 
     @Query("delete from movies where type = :type")
-    fun clear(type: String)
+    suspend fun clear(type: String)
 }

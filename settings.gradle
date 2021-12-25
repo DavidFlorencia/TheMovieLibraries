@@ -10,3 +10,4 @@ rootProject.name = "TheMovieApp"
 include ':the-movie-api'
 include ':the-movie-database'
 include ':the-movie-repository'
+include ':themovieapp'

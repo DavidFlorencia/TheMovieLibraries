@@ -12,8 +12,8 @@ interface TvShowDao {
     fun getTvShows(type: String): LiveData<List<TvShowEntity>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insertAll(videos: List<TvShowEntity>)
+    suspend fun insertAll(videos: List<TvShowEntity>)
 
     @Query("delete from tv_shows where type = :type")
-    fun clear(type: String)
+    suspend fun clear(type: String)
 }

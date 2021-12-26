@@ -1,10 +1,8 @@
 package com.dflorencia.themovieapi
 
 import com.dflorencia.themovieapi.movie.MoviePage
-import com.dflorencia.themovieapi.movie.MovieTrailerPage
 import com.dflorencia.themovieapi.tv_show.TvShowPage
 import retrofit2.http.GET
-import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface TmdbApi {
@@ -25,16 +23,4 @@ interface TmdbApi {
 
     @GET("tv/airing_today")
     suspend fun getAiringTodayTvShows(@Query("api_key") apiKey:String): TvShowPage
-
-    // Borrar estos
-    @GET("search/movie")
-    suspend fun searchMoviesFromNetwork(
-        @Query("api_key") apiKey:String,
-        @Query("query") query: String): MoviePage
-
-    @GET("movie/{movie_id}/videos")
-    suspend fun getMovieTrailers(
-        @Path("movie_id") movieId: String,
-        @Query("api_key") apiKey:String
-    ): MovieTrailerPage
 }

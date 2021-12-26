@@ -1,4 +1,4 @@
-package com.dflorencia.themovierepository.enums
+package com.dflorencia.themoviedatabase.tv_show
 
 enum class TvShowType(val value: String) {
     TOP_RATED("top_rated"),

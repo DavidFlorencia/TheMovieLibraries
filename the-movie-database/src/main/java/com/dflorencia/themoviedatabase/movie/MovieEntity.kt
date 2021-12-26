@@ -7,17 +7,17 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "movies")
 data class MovieEntity(
     @PrimaryKey val id: Int,
-    val adult: Boolean? = false,
-    @ColumnInfo(name = "backdrop_path") val backdropPath: String? = "",
-    @ColumnInfo(name = "original_language") val originalLanguage: String? = "",
-    @ColumnInfo(name = "original_title") val originalTitle: String? = "",
-    val overview: String? = "",
-    val popularity: Double? = 0.0,
-    @ColumnInfo(name = "poster_path") val posterPath: String? = "",
-    @ColumnInfo(name = "release_date") val releaseDate: String? = "",
-    val title: String? = "",
-    val video: Boolean? = false,
-    @ColumnInfo(name = "vote_average") val voteAverage: Double? = 0.0,
-    @ColumnInfo(name = "vote_count") val voteCount: Int? = 0,
-    @ColumnInfo(name = "type") val type: String? = ""
+    val adult: Boolean? = null,
+    @ColumnInfo(name = "backdrop_path") val backdropPath: String? = null,
+    @ColumnInfo(name = "original_language") val originalLanguage: String? = null,
+    @ColumnInfo(name = "original_title") val originalTitle: String? = null,
+    val overview: String? = null,
+    val popularity: Double? = null,
+    @ColumnInfo(name = "poster_path") val posterPath: String? = null,
+    @ColumnInfo(name = "release_date") val releaseDate: String? = null,
+    val title: String? = null,
+    val video: Boolean? = null,
+    @ColumnInfo(name = "vote_average") val voteAverage: Double? = null,
+    @ColumnInfo(name = "vote_count") val voteCount: Int? = null,
+    @ColumnInfo(name = "type") val type: String? = null
 )

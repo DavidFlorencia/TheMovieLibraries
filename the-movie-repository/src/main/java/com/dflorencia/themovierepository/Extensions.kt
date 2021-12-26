@@ -4,8 +4,8 @@ import com.dflorencia.themovieapi.movie.Movie
 import com.dflorencia.themovieapi.tv_show.TvShow
 import com.dflorencia.themoviedatabase.movie.MovieEntity
 import com.dflorencia.themoviedatabase.tv_show.TvShowEntity
-import com.dflorencia.themovierepository.enums.MovieType
-import com.dflorencia.themovierepository.enums.TvShowType
+import com.dflorencia.themoviedatabase.movie.MovieType
+import com.dflorencia.themoviedatabase.tv_show.TvShowType
 
 @JvmName("movieDatabase2Api")
 fun List<MovieEntity>.asApiModel(): List<Movie>{

@@ -31,6 +31,12 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+            returnDefaultValues = true
+        }
+    }
 }
 
 dependencies {
@@ -44,4 +50,12 @@ dependencies {
     // Hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+
+    // Testing
+    testImplementation "androidx.arch.core:core-testing:$core_testing_version"
+    testImplementation "androidx.test.ext:junit:$junit_version"
+    testImplementation "androidx.test.espresso:espresso-core:$espresso_core_version"
+    testImplementation 'org.mockito:mockito-core:3.8.0'
+
+//    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
 }

@@ -2,19 +2,16 @@ package com.dflorencia.themovierepository
 
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.dflorencia.themovieapi.movie.Movie
 import com.dflorencia.themovieapi.TmdbApi
-import com.dflorencia.themovieapi.movie.MoviePage
 import com.dflorencia.themovieapi.tv_show.TvShow
 import com.dflorencia.themoviedatabase.movie.MovieDao
 import com.dflorencia.themoviedatabase.tv_show.TvShowDao
-import com.dflorencia.themovierepository.enums.MovieType
-import com.dflorencia.themovierepository.enums.TvShowType
+import com.dflorencia.themoviedatabase.movie.MovieType
+import com.dflorencia.themoviedatabase.tv_show.TvShowType
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import org.jetbrains.annotations.TestOnly
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -22,9 +19,9 @@ import javax.inject.Singleton
 class AppRepository @Inject constructor(private val movieDao: MovieDao,
                                         private val tvShowDao: TvShowDao,
                                         private val tmdbApi: TmdbApi,
-                                        private val apiKey: String){
+                                        private val apiKey: String) : TheMovieRepository {
 
-    suspend fun refreshData(){
+    override suspend fun refreshData(){
         withContext(Dispatchers.IO){
             refreshMovies(type = MovieType.TOP_RATED)
             refreshMovies(type = MovieType.POPULAR)
@@ -36,7 +33,7 @@ class AppRepository @Inject constructor(private val movieDao: MovieDao,
     }
 
     @VisibleForTesting
-    suspend fun refreshMovies(type: MovieType) {
+    override suspend fun refreshMovies(type: MovieType) {
         val response = when (type){
             MovieType.TOP_RATED -> tmdbApi.getTopRatedMovies(apiKey)
             MovieType.POPULAR -> tmdbApi.getPopularMovies(apiKey)
@@ -50,7 +47,7 @@ class AppRepository @Inject constructor(private val movieDao: MovieDao,
     }
 
     @VisibleForTesting
-    suspend fun refreshTvShows(type: TvShowType) {
+    override suspend fun refreshTvShows(type: TvShowType) {
         val response = when (type){
             TvShowType.TOP_RATED -> tmdbApi.getTopRatedTvShows(apiKey)
             TvShowType.POPULAR -> tmdbApi.getPopularTvShows(apiKey)
@@ -63,40 +60,32 @@ class AppRepository @Inject constructor(private val movieDao: MovieDao,
         }
     }
 
-    private val _key = MutableLiveData<String>();
-    val key: LiveData<String> get() = _key
-
-    suspend fun refreshMovieTrailerKey(movieId:String) {
-        val movieTrailerPage = tmdbApi.getMovieTrailers(movieId,apiKey)
-        _key.value = movieTrailerPage.movieTrailers?.get(0)?.key.toString()
-    }
-
-    val moviesTopRated: LiveData<List<Movie>> =
+    override val moviesTopRated: LiveData<List<Movie>> =
         Transformations.map(movieDao.getMovies(MovieType.TOP_RATED.value)) {
             it.asApiModel()
         }
 
-    val moviesPopular: LiveData<List<Movie>> =
+    override val moviesPopular: LiveData<List<Movie>> =
         Transformations.map(movieDao.getMovies(MovieType.POPULAR.value)) {
             it.asApiModel()
         }
 
-    val moviesUpcoming: LiveData<List<Movie>> =
+    override val moviesUpcoming: LiveData<List<Movie>> =
         Transformations.map(movieDao.getMovies(MovieType.UPCOMING.value)) {
             it.asApiModel()
         }
 
-    val tvShowsTopRated: LiveData<List<TvShow>> =
+    override val tvShowsTopRated: LiveData<List<TvShow>> =
         Transformations.map(tvShowDao.getTvShows(TvShowType.TOP_RATED.value)) {
             it.asApiModel()
         }
 
-    val tvShowsPopular: LiveData<List<TvShow>> =
+    override val tvShowsPopular: LiveData<List<TvShow>> =
         Transformations.map(tvShowDao.getTvShows(TvShowType.POPULAR.value)) {
             it.asApiModel()
         }
 
-    val tvShowsAiringToday: LiveData<List<TvShow>> =
+    override val tvShowsAiringToday: LiveData<List<TvShow>> =
         Transformations.map(tvShowDao.getTvShows(TvShowType.AIRING_TODAY.value)) {
             it.asApiModel()
         }

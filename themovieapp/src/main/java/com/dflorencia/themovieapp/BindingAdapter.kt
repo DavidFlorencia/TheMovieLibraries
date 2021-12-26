@@ -14,6 +14,11 @@ import com.dflorencia.themovieapp.movie.MovieAdapter
 import com.dflorencia.themovieapp.overview.ApiStatus
 import com.dflorencia.themovieapp.tv_show.TvShowAdapter
 
+@BindingAdapter("visible")
+fun setVisibility(view: View, visibility: Boolean){
+    view.visibility = if (visibility) View.VISIBLE else View.GONE;
+}
+
 @BindingAdapter("dataMovie")
 fun setDataMovie(recyclerView: RecyclerView, data: List<Movie>?){
     val adapter = recyclerView.adapter as MovieAdapter
@@ -63,25 +68,5 @@ fun setStatus(statusImageView: ImageView,
         ApiStatus.DONE -> {
             statusImageView.visibility = View.GONE
         }
-    }
-}
-
-@BindingAdapter("videoUrl")
-fun setVideoUrl(webView: WebView, key: String?) {
-    key?.let {
-        val url = "https://www.youtube.com/embed/$key"
-        val dataUrl = "<html>" +
-                "<head>\n" +
-                "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
-                "</head>" +
-                "<body>" +
-                "<br>" +
-                "<iframe width=\"100%\" height=\"100%\" src=\"" +
-                url +
-                "\" frameborder=\"0\" allowfullscreen/>" +
-                "</body>" +
-                "</html>"
-
-        webView.loadData(dataUrl, "text/html", "utf-8")
     }
 }

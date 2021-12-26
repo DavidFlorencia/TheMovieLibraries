@@ -1,5 +1,6 @@
 package com.dflorencia.themovieapp.overview
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -31,13 +32,14 @@ class OverviewViewModel @Inject constructor(val appRepository: AppRepository): V
         refreshDataFromRepository()
     }
 
-    private fun refreshDataFromRepository(query: String = "") {
+    @VisibleForTesting
+    fun refreshDataFromRepository() {
         viewModelScope.launch {
             _status.value = ApiStatus.LOADING
             try {
                 appRepository.refreshData()
                 _status.value = ApiStatus.DONE
-            } catch (networkError: IOException) {
+            } catch (e: Exception) {
                 if (moviesTopRated.value.isNullOrEmpty()) {
                     _status.value = ApiStatus.ERROR
                 }else {

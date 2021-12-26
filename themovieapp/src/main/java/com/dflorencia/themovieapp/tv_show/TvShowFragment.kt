@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import com.dflorencia.themovieapp.MainActivity
 import com.dflorencia.themovieapp.databinding.FragmentTvShowBinding
 
 class TvShowFragment:Fragment() {
@@ -34,6 +35,8 @@ class TvShowFragment:Fragment() {
 
     override fun onResume() {
         super.onResume()
-        (activity as AppCompatActivity).supportActionBar?.title = args.tvShow.name
+        if(requireActivity() is MainActivity){
+            (activity as AppCompatActivity).supportActionBar?.title = args.tvShow.name
+        }
     }
 }

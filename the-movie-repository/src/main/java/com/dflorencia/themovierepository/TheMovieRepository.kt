@@ -6,6 +6,7 @@ import com.dflorencia.themovieapi.movie.Movie
 import com.dflorencia.themovieapi.tv_show.TvShow
 import com.dflorencia.themoviedatabase.movie.MovieType
 import com.dflorencia.themoviedatabase.tv_show.TvShowType
+import javax.inject.Singleton
 
 interface TheMovieRepository {
     suspend fun refreshData()

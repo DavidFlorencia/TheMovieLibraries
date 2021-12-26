@@ -2,6 +2,8 @@
 
 ## [The Movie Api](/the-movie-api/src/main/java/com/dflorencia/themovieapi)
 
+[the-movie-api.aar](/the-movie-api.aar)
+
 Esta una libreria de Android que se encarga de consumir los servicios de la Api Rest de https://www.themoviedb.org/documentation/api.
 Contiene los modelos de datos [MoviePage](/the-movie-api/src/main/java/com/dflorencia/themovieapi/movie/MoviePage.kt) y [TvShowPage](/the-movie-api/src/main/java/com/dflorencia/themovieapi/tv_show/TvShowPage.kt) los cuales almacenan la respuesta del api según la consulta que se haya realizado. 
 Dentro de los modelos Page podemos encontrar una lista de películas o series de televisión cuyo modelo de datos individual son [Movie](/the-movie-api/src/main/java/com/dflorencia/themovieapi/movie/Movie.kt) y [TvShow](/the-movie-api/src/main/java/com/dflorencia/themovieapi/tv_show/TvShow.kt) respectivamente.
@@ -18,6 +20,8 @@ Los métodos provistos por esta libreria son los siguientes:
 * getAiringTodayTvShows(apiKey: String): Requiere un apiKey como parámetro. Devuelve un TvShowPage que contiene una lista con las series que se transmiten el día de la consulta.
 
 ## [The Movie Database](/the-movie-database/src/main/java/com/dflorencia/themoviedatabase)
+
+[the-movie-database.aar](/the-movie-database.aar)
 
 Esta una libreria de Android para la persistencia de datos de la información obtenida por las consultas de la librería **The Movie Api**. 
 Sin embargo, ambas librerías pueden trabajar de manera totalmente independiente.
@@ -46,6 +50,8 @@ En caso de encontrar conflictos con un elemento, lo ignora y continua con el sig
 Las pruebas implementadas para esta libreria pueden ser consultadas en el directorio [androidTest](/the-movie-database/src/androidTest/java/com/dflorencia/themoviedatabase/).
   
 ## [The Movie Repository](/the-movie-repository/src/main/java/com/dflorencia/themovierepository/)
+
+[the-movie-repository.aar](/the-movie-repository.aar)
   
 Esta es una libreria orquestadora entre **The Movie Api** y **The Movie Database**, es decir tiene dependencia explícita de las mismas.
   

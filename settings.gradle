@@ -6,8 +6,7 @@ dependencyResolutionManagement {
         jcenter() // Warning: this repository is going to shut down soon
     }
 }
-rootProject.name = "TheMovieApp"
+rootProject.name = "TheMovieLibraries"
 include ':the-movie-api'
 include ':the-movie-database'
 include ':the-movie-repository'
-include ':themovieapp'
